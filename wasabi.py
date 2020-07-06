@@ -1,4 +1,4 @@
-import boto3
+import boto3 
 import wasabiconfig as cfg
 
 
@@ -25,7 +25,7 @@ def wasabiuploadfile(localfile,remotefile,bucket):
                 'version': '2.0.6'
             
             },
-            'ContentType': 'text/plain'
+            'ContentType': 'application/gzip'
             }
     )
 
@@ -36,7 +36,7 @@ def createlatest(remotefile,bucket):
     endpoint_url = endpoint,
     aws_access_key_id = aws_access_key,
     aws_secret_access_key = aws_secret_key)
-    s3.Object(bucket,'snapshot-latest').copy_from(CopySource=bucket+"/"+remotefile)
+    s3.Object(bucket,'snapshot-latest.tar.gz').copy_from(CopySource=bucket+"/"+remotefile)
 
 createlatest('test11.txt','waxtest2')
 

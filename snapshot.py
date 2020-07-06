@@ -20,18 +20,26 @@ SNAPSHOT_INFO = requests.post(url=API_SNAPSHOT, json=SNAPSHOT_DATA)
 # Turn Response into JSON
 SNAPSHOT_INFO_JSON = json.loads(SNAPSHOT_INFO .text)
 
-# Extract snapshot_name
+# Extract snapshot_name full path  and filename
 SNAPSHOT_NAME = SNAPSHOT_INFO_JSON ['snapshot_name']
 print(SNAPSHOT_NAME)
+
+# Extract snapshot bin filename only 
+## Extract the position
+SNAPSHOT_FILENAME_POS  = SNAPSHOT_NAME.find('snapshot-')
+## Extract the strign starting at position SNAPSHOT_FILENAME.POS
+SNAPSHOT_FILENAME = SNAPSHOT_NAME[SNAPSHOT_FILENAME_POS:]
 
 #Get current date and time
 now = datetime.now()
 # create date string for filename
 dt_string = now.strftime("%d_%m_%Y-%H_%M")
 # Create filename for snapshot using date string
-FILENAME = 'snapshot' + dt_string+'.tar.gz'
+FILENAME = 'snapshot-' + dt_string + '.tar.gz'
 
 # Compress the snapshot
-subprocess.call(['tar', '-czf', FILENAME, SNAPSHOT_NAME])
+subprocess.call([ 'mv', SNAPSHOT_NAME, '.' ])
+subprocess.call(['tar', '-czf', FILENAME, SNAPSHOT_FILENAME])
 
+#Upload file to Wasabi
 wasabi.wasabiuploadfile(FILENAME,FILENAME,'waxtest2')
