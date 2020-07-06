@@ -37,9 +37,14 @@ dt_string = now.strftime("%d_%m_%Y-%H_%M")
 # Create filename for snapshot using date string
 FILENAME = 'snapshot-' + dt_string + '.tar.gz'
 
-# Compress the snapshot
+# Mv the snapshot to current directory 
 subprocess.call([ 'mv', SNAPSHOT_NAME, '.' ])
+# Create archive of snapshot filename
 subprocess.call(['tar', '-czf', FILENAME, SNAPSHOT_FILENAME])
+# delete snapshot 
+subprocess.call([ 'rm', SNAPSHOT_FILENAME ])
 
-#Upload file to Wasabi
+# Upload file to Wasabi
 wasabi.wasabiuploadfile(FILENAME,FILENAME,'waxtest2')
+# Create latest file
+wasabi.createlatest(FILENAME,'waxtest2')
