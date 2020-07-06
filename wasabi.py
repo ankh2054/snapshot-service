@@ -29,7 +29,7 @@ def wasabiuploadfile(localfile,remotefile,bucket):
             }
     )
 
-wasabiuploadfile('test.txt','test11.txt','waxtest2')
+#wasabiuploadfile('test.txt','test11.txt','waxtest2')
 # Create the latest Snapshot
 def createlatest(remotefile,bucket):
     s3 = boto3.resource('s3',
@@ -38,5 +38,5 @@ def createlatest(remotefile,bucket):
     aws_secret_access_key = aws_secret_key)
     s3.Object(bucket,'snapshot-latest.tar.gz').copy_from(CopySource=bucket+"/"+remotefile)
 
-createlatest('test11.txt','waxtest2')
+#createlatest('test11.txt','waxtest2')
 
