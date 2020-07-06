@@ -1,0 +1,7 @@
+*config.py
+.env
+lib
+include
+bin
+.Python
+_pycache_

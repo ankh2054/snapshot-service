@@ -1,9 +1,10 @@
 import boto3
-from decouple import config
+import wasabiconfig as cfg
 
-endpoint = config('endpoint_url')
-aws_access_key = config('aws_access_key_id')
-aws_secret_key = config('aws_secret_access_key')
+
+endpoint = cfg.s3["endpoint_url"]
+aws_access_key = cfg.s3["aws_access_key_id"]
+aws_secret_key = cfg.s3["aws_secret_access_key"]
 
 s4 = boto3.client('s3',
 endpoint_url = endpoint,
