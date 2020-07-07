@@ -6,8 +6,9 @@
 
 create_supervisor_conf() {
 echo "Creating supervisor.conf"
+
 # Set WAX Binary DIR
-WAX_BINARY_DIR=$(dpkg-query -L $WAX_BINARY | grep nodeos | dpkg-query -L wax-mv-206wax02 | grep nodeos | cut -d "/" -f 1-5)
+WAX_BINARY_DIR=$(dpkg-query -L $WAX_BINARY | grep nodeos | cut -d "/" -f 1-5)
 
   rm -rf /etc/supervisord.conf
   cat > /etc/supervisord.conf <<EOF
