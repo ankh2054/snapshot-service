@@ -25,9 +25,9 @@ ENV REPO="\
     deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing \
 "
 
-# Install gnupg and ca-certificates to add APT certifcate
+# Install required packages to add APT certifcate and APT REPOs
 RUN apt update
-RUN apt install -y wget gnupg2 ca-certificates
+RUN apt install -y wget gnupg2 ca-certificates software-properties-common
 
 ## EOSswededn Package repostiory setup 
 # Add GPG key
