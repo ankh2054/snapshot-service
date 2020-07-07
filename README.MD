@@ -10,7 +10,7 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 
 ## ENV Variables
 
-|       |ENV                      |Value                        |Description
+|ENV                       |Value                          |Description                                   |
 |--------------------------|-------------------------------|----------------------------------------------|
 |**CHAIN_NAME**            |`wax`                          |'Isn't this fun?'                  			  |
 |**SNAPSHOT_NAME**         |`"Isn't this fun?"`            |"Isn't this fun?"            				  |
