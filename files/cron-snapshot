@@ -2,4 +2,4 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 ## Perform a snapshot
-0 * * * * /usr/local/bin/python3 /eos/snapshot.py
+0 * * * * /usr/bin/python3 /eos/snapshot.py

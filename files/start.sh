@@ -81,10 +81,10 @@ echo "Creating the wasabiconfig.py env variables"
 #!/usr/bin/env python
 import preprocessing
 s3 = {
-    "endpoint_url": ${ENDPOINT_URL},
-    "aws_access_key_id": ${AWS_ACCESS_KEY_ID},
-    "aws_secret_access_key": ${AWS_SECRET_ACCESS_KEY},
-    "wasabi_bucket": ${WASABI_BUCKET}
+    "endpoint_url": "${ENDPOINT_URL}",
+    "aws_access_key_id": "${AWS_ACCESS_KEY_ID}",
+    "aws_secret_access_key": "${AWS_SECRET_ACCESS_KEY}",
+    "wasabi_bucket": "${WASABI_BUCKET}"
 }
 EOF
 }
