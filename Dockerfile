@@ -30,11 +30,11 @@ RUN apt install -y wget gnupg2 ca-certificates software-properties-common
 ## EOSswededn Package repostiory setup 
 # Add GPG key
 RUN wget --no-check-certificate -O- https://apt.eossweden.org/key 2> /dev/null | apt-key add -   
-#RUN apt-add-repository -y 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable'    
-#RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' 
+RUN apt-add-repository -y 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable'    
+RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' 
 
 ## Add APT Repos
-RUN for i in $REPO ; do add-apt-repository -y $i; done
+#RUN for i in $REPO ; do add-apt-repository -y $i; done
 RUN apt update
 
 # Install Packages including WAX_BINARY
