@@ -19,6 +19,7 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 |**AWS_ACCESS_KEY_ID**     |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 access key        		  |
 |**AWS_SECRET_ACCESS_KEY** |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 secret key 				  |
 |**WASABI_BUCKET**         |`waxtest2`                     `       | Wasabi/S3 bucketname for snapshots   |
+|**WAX_BINARY_DIR**        |`2.0.6wax02`                     `     | Directory of  wax binary             |
 
 
 **To Build it:**
@@ -32,10 +33,16 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 
      docker run  --name snapshot.service.wax  -d  --expose 8888 \
 	 -e 'CHAIN_NAME=wax' \
-	 -e 'WAX_BINARY=2.0.6wax02' \
+	 -e 'WAX_BINARY_DIR=2.0.6wax02' \
 	 -e 'ENDPOINT_URL=https://s3.eu-central-1.wasabisys.com' \
 	 -e 'AWS_ACCESS_KEY_ID=xxxxxxxxxxx' \
 	 -e 'AWS_SECRET_ACCESS_KEY=xxxxxxxxxxx' \
 	 -e 'WASABI_BUCKET=waxtest2' \
 	 snapshot.service:latest
 
+
+
+
+## ToDo
+
+ - Automate WAX_BINARY_DIR by looknig at APT logs as to where nodeos was installed

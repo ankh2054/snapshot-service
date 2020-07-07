@@ -21,7 +21,7 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix:///var/run/supervisor.sock ; 
 
 [program:eosio]
-command=/usr/opt/wax-mv/${WAX_BINARY}/bin/nodeos --data-dir /eos --config-dir /eos --snapshot=snapshots/snapshot-latest.bin
+command=/usr/opt/wax-mv/${WAX_BINARY_DIR}/bin/nodeos --data-dir /eos --config-dir /eos --snapshot=snapshots/snapshot-latest.bin
 numprocs=1
 autostart=true
 
@@ -80,9 +80,8 @@ echo "Creating the wasabiconfig.py env variables"
   cat > wasabiconfig.py <<EOF
 #!/usr/bin/env python
 import preprocessing
-
-s3 = 
-    "endpoint_url": ${ENDPOINT_URL,
+s3 = {
+    "endpoint_url": ${ENDPOINT_URL},
     "aws_access_key_id": ${AWS_ACCESS_KEY_ID},
     "aws_secret_access_key": ${AWS_SECRET_ACCESS_KEY},
     "wasabi_bucket": ${WASABI_BUCKET}
