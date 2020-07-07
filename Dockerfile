@@ -31,7 +31,7 @@ RUN apt install -y gnupg2 ca-certificates
 
 ## EOSswededn Package repostiory setup 
 # Add GPG key
-RUN wget -O- https://apt.eossweden.org/key 2> /dev/null | apt-key add -   
+RUN wget --no-check-certificate -O- https://apt.eossweden.org/key 2> /dev/null | apt-key add -   
 #RUN apt-add-repository -y 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable'    
 #RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' 
 
