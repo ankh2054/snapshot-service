@@ -21,8 +21,8 @@ ENV PACKAGES="\
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
 ENV REPO="\
-    deb [arch=amd64] https://apt.eossweden.org/wax bionic stable \
-    deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing \
+    'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable' \
+    'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' \
 "
 
 # Install required packages to add APT certifcate and APT REPOs
