@@ -56,7 +56,7 @@ RUN chmod 0644 /etc/cron.d/cron-snapshot
 
 # Get latest snapshot
 WORKDIR /eos/snapshots
-RUN wget --no-check-certificate -O- %SNAPSHOT_NAME
+RUN wget --no-check-certificate -O- $SNAPSHOT_NAME
 # From the snapshot URL get the filename and extract
 RUN url=%SNAPSHOT_NAME; tar xzvf "${url##*/}"
 # Change name of snapshot for use on EOS starting
