@@ -51,6 +51,6 @@ wasabi.createlatest(FILENAME)
 subprocess.call([ 'rm', '/eos/snapshots/snapshot-latest.bin' ]) 
 subprocess.call([ 'mv', SNAPSHOT_FILENAME, '/eos/snapshots/snapshot-latest.bin'])
 # delete snapshot 
-subprocess.call([ 'rm', SNAPSHOT_FILENAME ])
+subprocess.call([ 'rm', FILENAME ])
 
 

@@ -21,7 +21,6 @@ ENV PACKAGES="\
 # To prevent - Warning: apt-key output should not be parsed (stdout is not a terminal)
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
-
 # Install required packages to add APT certifcate and APT REPOs
 RUN apt update && apt install --no-install-recommends -y wget gnupg2 ca-certificates software-properties-common
 
@@ -57,9 +56,11 @@ WORKDIR /eos/snapshots
 ARG SNAPSHOT_NAME 
 RUN wget --no-check-certificate  $SNAPSHOT_NAME
 # From the snapshot URL get the filename and extract
-RUN url=$SNAPSHOT_NAME; tar xzvf "${url##*/}"
+RUN filename=$SNAPSHOT_NAME; tar xzvf "${filename##*/}"
 # Change name of snapshot for use on EOS starting
 RUN mv snapshot*.bin snapshot-latest.bin
+# Remove original snapshot download
+RUN rm snapshot*.tar.gz
 
 # Entrypoint
 ADD files/start.sh /
