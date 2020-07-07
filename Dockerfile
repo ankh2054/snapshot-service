@@ -35,6 +35,9 @@ RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax bionic
 #RUN for i in $REPO ; do add-apt-repository -y $i; done
 RUN apt update
 
+
+# Pull in build argument
+ARG WAX_BINARY
 # Install Packages including WAX_BINARY
 RUN apt install -y $PACKAGES $WAX_BINARY && \
     rm -rf /var/lib/apt/lists/* && \
@@ -54,8 +57,11 @@ RUN chmod 0644 /etc/cron.d/cron-snapshot
 
 # Get latest snapshot
 WORKDIR /eos/snapshots
-RUN echo $SNAPSHOT_NAME
+# Pull in build argument
+ARG SNAPSHOT_NAME 
 RUN wget --no-check-certificate -O- $SNAPSHOT_NAME
+# Pull in build argument
+ARG SNAPSHOT_NAME
 # From the snapshot URL get the filename and extract
 RUN url=$SNAPSHOT_NAME; tar xzvf "${url##*/}"
 # Change name of snapshot for use on EOS starting
