@@ -14,7 +14,7 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 |--------------------------|---------------------------------------|--------------------------------------|
 |**CHAIN_NAME**            |`wax`                                  | Used in P2P download from eosnation  |
 |**SNAPSHOT_NAME**         |`http://x/snapshot.tar.gz`             | The initial snapshot to start with   |
-|**WAX_BINARY**            |`wax-mv-206wax02`                      | Which packe to install from APT      |
+|**WAX_BINARY**            |`wax-mv-206wax02`                      | Which package to install from APT    |
 |**ENDPOINT_URL**          |`https://s3.eu-central-1.wasabisys.com`| Wasabi/S3 endpoint URL for downloads |
 |**AWS_ACCESS_KEY_ID**     |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 access key        		  |
 |**AWS_SECRET_ACCESS_KEY** |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 secret key 				  |
@@ -23,11 +23,14 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 
 **To Build it:**
 
-	$ docker build https://github.com/ankh2054/snapshot-service.git -t snapshot.service
+	 docker build https://github.com/ankh2054/snapshot-service.git \
+	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/latest \
+	 WAX_BINARY=wax-mv-206wax02 \
+	 -t snapshot.service
 
 **To run it:**
 
-    $ docker run  --name snapshot.service.wax  -d \
+     docker run  --name snapshot.service.wax  -d \
 	 -e 'CHAIN_NAME=wax' \
 	 -e 'SNAPSHOT_NAME=https://s3.eu-central-1.wasabisys.com/waxtest2/snapshot-latest.tar.gz' \
 	 -e 'WAX_BINARY=wax-mv-206wax02' \

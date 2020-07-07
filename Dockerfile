@@ -16,6 +16,7 @@ ENV PACKAGES="\
   wget \
   nano \
   cron \
+  gnupg \
 "
 
 ENV REPO="\
