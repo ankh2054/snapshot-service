@@ -16,8 +16,6 @@ ENV PACKAGES="\
   wget \
   nano \
   cron \
-  gnupg2 \
-  ca-certificates \
 "
 # To prevent - Warning: apt-key output should not be parsed (stdout is not a terminal)
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
@@ -27,9 +25,9 @@ ENV REPO="\
     deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing \
 "
 
-# Install gnupg to add APT certifcate
+# Install gnupg and ca-certificates to add APT certifcate
 RUN apt update
-RUN apt install -y gnupg
+RUN apt install -y gnupg2 ca-certificates
 
 ## EOSswededn Package repostiory setup 
 # Add GPG key
