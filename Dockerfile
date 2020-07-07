@@ -27,7 +27,7 @@ ENV REPO="\
 
 # Install gnupg and ca-certificates to add APT certifcate
 RUN apt update
-RUN apt install -y gnupg2 ca-certificates
+RUN apt install -y wget gnupg2 ca-certificates
 
 ## EOSswededn Package repostiory setup 
 # Add GPG key
