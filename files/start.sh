@@ -89,6 +89,11 @@ s3 = {
 EOF
 }
 
+delete_snapshot(){
+ rm /eos/snapshots/snapshot*
+
+}
+
 # Running all our scripts
 create_supervisor_conf
 create_config_ini
@@ -97,3 +102,7 @@ python_snapshot_setup
 # Start Supervisor 
 echo "Starting Supervisor"
 /usr/bin/supervisord -n -c /etc/supervisord.conf
+
+#sleep 10
+# Delete the snapshot after nodeos has started
+#delete_snapshot
