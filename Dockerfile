@@ -16,6 +16,7 @@ ENV PACKAGES="\
   wget \
   nano \
   cron \
+  python3-setuptools \
 "
 # To prevent - Warning: apt-key output should not be parsed (stdout is not a terminal)
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
