@@ -41,8 +41,6 @@ FILENAME = 'snapshot-' + dt_string + '.tar.gz'
 subprocess.call([ 'mv', SNAPSHOT_NAME, '.' ])
 # Create archive of snapshot filename
 subprocess.call(['tar', '-czf', FILENAME, SNAPSHOT_FILENAME])
-# delete snapshot 
-subprocess.call([ 'rm', SNAPSHOT_FILENAME ])
 
 # Upload file to Wasabi
 wasabi.wasabiuploadfile(FILENAME,FILENAME)
@@ -50,7 +48,9 @@ wasabi.wasabiuploadfile(FILENAME,FILENAME)
 wasabi.createlatest(FILENAME)
 
 # MV current snapshot to /eos/snapshots incase nodeos needs to restart
-subprocess.call([ 'rm', '/eos/snapshots/snapshot-*.*' ]) 
+subprocess.call([ 'rm', '/eos/snapshots/snapshot-latest.bin' ]) 
 subprocess.call([ 'mv', SNAPSHOT_FILENAME, '/eos/snapshots/snapshot-latest.bin'])
+# delete snapshot 
+subprocess.call([ 'rm', SNAPSHOT_FILENAME ])
 
 
