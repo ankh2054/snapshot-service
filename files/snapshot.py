@@ -50,5 +50,7 @@ wasabi.wasabiuploadfile(FILENAME,FILENAME)
 wasabi.createlatest(FILENAME)
 
 # MV current snapshot to /eos/snapshots incase nodeos needs to restart
-subprocess.call([ 'rm' , '/eos/snapshots/*', '&&', 'mv', SNAPSHOT_FILENAME, '/eos/snapshots/snapshot-latest.bin',  ])
+subprocess.call([ 'rm', '/eos/snapshots/snapshot-*.*' ]) 
+subprocess.call([ 'mv', SNAPSHOT_FILENAME, '/eos/snapshots/snapshot-latest.bin'])
+
 

@@ -2,8 +2,8 @@
 FROM ubuntu:18.04
 
 LABEL maintainer="charles@sentnl.io"
-LABEL version="0.1"
-LABEL description="EOSIO + SNAPSHOT SERVICE."
+LABEL version="1.0"
+LABEL description="EOSIO MULTICHAIN SNAPSHOT SERVICE."
 
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive

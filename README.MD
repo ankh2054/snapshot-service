@@ -46,3 +46,4 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 ## ToDo
 
  - Automate WAX_BINARY_DIR by looknig at APT logs as to where nodeos was installed
+ - Automate APT sources to be installed
