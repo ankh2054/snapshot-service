@@ -24,16 +24,22 @@ ENV REPO="\
     deb [arch=amd64] https://apt.eossweden.org/wax bionic stable \
     deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing \
 "
+
+# Install gnupg to add APT certifcate
+RUN apt update
+RUN apt install -y gnupg
+
 ## EOSswededn Package repostiory setup 
 # Add GPG key
-RUN apt update
 RUN wget --no-check-certificate -O- https://apt.eossweden.org/key 2> /dev/null | apt-key add -   
 #RUN apt-add-repository -y 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable'    
 #RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' 
+
 ## Add APT Repos
 RUN for i in $REPO ; do sudo add-apt-repository -y $i; done
 RUN apt update
 
+# Install Packages including WAX_BINARY
 RUN apt install -y $PACKAGES $WAX_BINARY && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
