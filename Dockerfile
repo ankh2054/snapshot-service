@@ -59,7 +59,7 @@ RUN chmod 0644 /etc/cron.d/cron-snapshot
 WORKDIR /eos/snapshots
 # Pull in build argument
 ARG SNAPSHOT_NAME 
-RUN wget --no-check-certificate -O- $SNAPSHOT_NAME
+RUN wget --no-check-certificate  $SNAPSHOT_NAME
 # Pull in build argument
 ARG SNAPSHOT_NAME
 # From the snapshot URL get the filename and extract
