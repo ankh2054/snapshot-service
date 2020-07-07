@@ -24,6 +24,7 @@ serverurl=unix:///var/run/supervisor.sock ;
 command=/usr/opt/wax-mv/${WAX_BINARY_DIR}/bin/nodeos --data-dir /eos --config-dir /eos --snapshot=snapshots/snapshot-latest.bin
 numprocs=1
 autostart=true
+autorestart = true
 
 [program:crond]
 priority = 100
@@ -89,10 +90,6 @@ s3 = {
 EOF
 }
 
-delete_snapshot(){
- rm /eos/snapshots/snapshot*
-
-}
 
 # Running all our scripts
 create_supervisor_conf
@@ -102,7 +99,3 @@ python_snapshot_setup
 # Start Supervisor 
 echo "Starting Supervisor"
 /usr/bin/supervisord -n -c /etc/supervisord.conf
-
-#sleep 10
-# Delete the snapshot after nodeos has started
-#delete_snapshot
