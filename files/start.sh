@@ -2,13 +2,14 @@
 
 # Creating supervisor file
 ###########################
-## ENV variables can be passed as ${DJANGO_APP_NAME}
+## Docker ENV variables can be passed as ${ENDPOINT_URL}
+## Bash variables should be passed as $WAX_BINARY_DIR ${$WAX_BINARY}
 
 create_supervisor_conf() {
 echo "Creating supervisor.conf"
 
 # Set WAX Binary DIR
-WAX_BINARY_DIR=$(dpkg-query -L $WAX_BINARY | grep nodeos | cut -d "/" -f 1-5)
+WAX_BINARY_DIR=$(dpkg-query -L ${WAX_BINARY} | grep nodeos | cut -d "/" -f 1-5)
 
   rm -rf /etc/supervisord.conf
   cat > /etc/supervisord.conf <<EOF
@@ -25,7 +26,7 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix:///var/run/supervisor.sock ; 
 
 [program:eosio]
-command=/usr/opt/wax-mv/$WAX_BINARY_DIR/bin/nodeos --data-dir /eos --config-dir /eos --snapshot=snapshots/snapshot-latest.bin
+command=/usr/opt/wax-mv/${WAX_BINARY_DIR}/bin/nodeos --data-dir /eos --config-dir /eos --snapshot=snapshots/snapshot-latest.bin
 numprocs=1
 autostart=true
 autorestart = true
