@@ -69,7 +69,7 @@ RUN mv snapshot*.bin snapshot-latest.bin
 
 
 # Entrypoint
-ADD start.sh /
+ADD files/start.sh /
 RUN chmod u+x /start.sh
 CMD /start.sh
                                             
