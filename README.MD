@@ -20,7 +20,12 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 |**AWS_SECRET_ACCESS_KEY** |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 secret key 				  |
 |**WASABI_BUCKET**         |`waxtest2`                     `       | Wasabi/S3 bucketname for snapshots   |
 
-To run it:
+
+**To Build it:**
+
+	$ docker build https://github.com/ankh2054/snapshot-service.git -t snapshot.service
+
+**To run it:**
 
     $ docker run  --name snapshot.service.wax  -d \
 	 -e 'CHAIN_NAME=wax' \
