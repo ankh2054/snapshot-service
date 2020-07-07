@@ -45,6 +45,9 @@ subprocess.call(['tar', '-czf', FILENAME, SNAPSHOT_FILENAME])
 subprocess.call([ 'rm', SNAPSHOT_FILENAME ])
 
 # Upload file to Wasabi
-wasabi.wasabiuploadfile(FILENAME,'waxtest2')
+wasabi.wasabiuploadfile(FILENAME,FILENAME)
 # Create latest file
 wasabi.createlatest(FILENAME)
+
+# delete snapshot.tar.gz 
+subprocess.call([ 'rm', FILENAME ])

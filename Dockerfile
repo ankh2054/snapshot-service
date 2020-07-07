@@ -22,8 +22,7 @@ ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
 
 # Install required packages to add APT certifcate and APT REPOs
-RUN apt update
-RUN apt install -y wget gnupg2 ca-certificates software-properties-common
+RUN apt update && apt install --no-install-recommends -y wget gnupg2 ca-certificates software-properties-common
 
 ## EOSswededn Package repostiory setup 
 # Add GPG key
@@ -31,15 +30,11 @@ RUN wget --no-check-certificate -O- https://apt.eossweden.org/key 2> /dev/null |
 RUN apt-add-repository -y 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable'    
 RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' 
 
-## Add APT Repos
-#RUN for i in $REPO ; do add-apt-repository -y $i; done
-RUN apt update
-
 
 # Pull in build argument
 ARG WAX_BINARY
 # Install Packages including WAX_BINARY
-RUN apt install -y $PACKAGES $WAX_BINARY && \
+RUN apt update && apt install --no-install-recommends -y $PACKAGES $WAX_BINARY && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
 
@@ -60,13 +55,10 @@ WORKDIR /eos/snapshots
 # Pull in build argument
 ARG SNAPSHOT_NAME 
 RUN wget --no-check-certificate  $SNAPSHOT_NAME
-# Pull in build argument
-ARG SNAPSHOT_NAME
 # From the snapshot URL get the filename and extract
 RUN url=$SNAPSHOT_NAME; tar xzvf "${url##*/}"
 # Change name of snapshot for use on EOS starting
 RUN mv snapshot*.bin snapshot-latest.bin
-
 
 # Entrypoint
 ADD files/start.sh /
