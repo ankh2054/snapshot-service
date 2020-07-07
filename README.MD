@@ -10,7 +10,7 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 
 ## ENV Variables
 
-|ENV                       |Value                          |Description                                   |
+|ENV & ARG                 |Value                          |Description                                   |
 |--------------------------|---------------------------------------|--------------------------------------|
 |**CHAIN_NAME**            |`wax`                                  | Used in P2P download from eosnation  |
 |**SNAPSHOT_NAME**         |`http://x/snapshot.tar.gz`             | The initial snapshot to start with   |
