@@ -47,8 +47,8 @@ ADD files/wasabi.py /eos/wasabi.py
 ADD files/requirements.txt /eos/requirements.txt
 ADD files/cron-snapshot /etc/cron.d
 
-# Permissions
-RUN chmod 0644 /etc/cron.d/cron-snapshot
+# Permissions and add cron to root crontab
+RUN chmod 0644 /etc/cron.d/cron-snapshot && crontab /etc/cron.d/cron-snapshot
 
 # Get latest snapshot
 WORKDIR /eos/snapshots
