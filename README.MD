@@ -30,13 +30,12 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 
 **To run it:**
 
-     docker run  --name snapshot.service.wax  -d \
+     docker run  --name snapshot.service.wax  -d  --expose 8888 \
 	 -e 'CHAIN_NAME=wax' \
-	 -e 'SNAPSHOT_NAME=https://s3.eu-central-1.wasabisys.com/waxtest2/snapshot-latest.tar.gz' \
-	 -e 'WAX_BINARY=wax-mv-206wax02' \
+	 -e 'WAX_BINARY=2.0.6wax02' \
 	 -e 'ENDPOINT_URL=https://s3.eu-central-1.wasabisys.com' \
 	 -e 'AWS_ACCESS_KEY_ID=xxxxxxxxxxx' \
 	 -e 'AWS_SECRET_ACCESS_KEY=xxxxxxxxxxx' \
 	 -e 'WASABI_BUCKET=waxtest2' \
-	 snapshot.service
+	 snapshot.service:latest
 

@@ -27,7 +27,7 @@ autostart=true
 
 [program:crond]
 priority = 100
-command = bash -c "while true; do sleep 0.1; [[ -e /var/run/crond.pid ]] || break; done && exec /usr/sbin/crond -m off -n"
+command = bash -c "while true; do sleep 0.1; [[ -e /var/run/crond.pid ]] || break; done && exec /usr/sbin/cron -f" 
 startsecs = 0
 autorestart = true
 redirect_stderr = true
