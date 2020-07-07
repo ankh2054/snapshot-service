@@ -10,11 +10,15 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 
 ## ENV Variables
 
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+|       |ENV                      |Value                        |Description
+|--------------------------|-------------------------------|----------------------------------------------|
+|**CHAIN_NAME**            |`wax`                          |'Isn't this fun?'                  			  |
+|**SNAPSHOT_NAME**         |`"Isn't this fun?"`            |"Isn't this fun?"            				  |
+|**WAX_BINARY**            |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash			      |
+|**ENDPOINT_URL**          |`'Isn't this fun?'`            |'Isn't this fun?'          					  |
+|**AWS_ACCESS_KEY_ID**     |`"Isn't this fun?"`            |"Isn't this fun?"        				      |
+|**AWS_SECRET_ACCESS_KEY** |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash				  |
+|**WASABI_BUCKET**         |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash				  |
 
 - **CHAIN_NAME**=wax ( the chain used where P2P list is dowlonaded from eosnation validation)
 - **SNAPSHOT_NAME**=https://s3.eu-central-1.wasabisys.com/waxtest2/snapshot-latest.tar.gz   (the initial snapshot to start nodeos with)
