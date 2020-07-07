@@ -47,4 +47,4 @@ subprocess.call([ 'rm', SNAPSHOT_FILENAME ])
 # Upload file to Wasabi
 wasabi.wasabiuploadfile(FILENAME,'waxtest2')
 # Create latest file
-wasabi.createlatest(FILENAME,'waxtest2')
+wasabi.createlatest(FILENAME)
