@@ -20,10 +20,8 @@ ENV PACKAGES="\
 # To prevent - Warning: apt-key output should not be parsed (stdout is not a terminal)
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
-ENV REPO="\
-    'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable' \
-    'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' \
-"
+ENV REPO=" 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable' "
+
 
 # Install required packages to add APT certifcate and APT REPOs
 RUN apt update
