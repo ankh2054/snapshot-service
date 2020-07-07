@@ -41,7 +41,7 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 	 snapshot.service:latest
 
 
-
+	
 
 ## ToDo
 

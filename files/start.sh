@@ -26,7 +26,7 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix:///var/run/supervisor.sock ; 
 
 [program:eosio]
-command=/usr/opt/wax-mv/${WAX_BINARY_DIR}/bin/nodeos --data-dir /eos --config-dir /eos --snapshot=snapshots/snapshot-latest.bin
+command=${WAX_BINARY_DIR}/bin/nodeos --data-dir /eos --config-dir /eos --snapshot=snapshots/snapshot-latest.bin
 numprocs=1
 autostart=true
 autorestart = true
