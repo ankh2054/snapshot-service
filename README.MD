@@ -22,11 +22,11 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 
 
 **To Build it:**
-
-	 docker build https://github.com/ankh2054/snapshot-service.git \
+     
+	 docker build  https://github.com/ankh2054/snapshot-service.git  \
+	 -t snapshot.service \
 	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/latest \
-	 WAX_BINARY=wax-mv-206wax02 \
-	 -t snapshot.service
+	 --build-arg WAX_BINARY=wax-mv-206wax02 
 
 **To run it:**
 
