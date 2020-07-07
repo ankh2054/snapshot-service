@@ -65,7 +65,7 @@ ARG SNAPSHOT_NAME
 # From the snapshot URL get the filename and extract
 RUN url=$SNAPSHOT_NAME; tar xzvf "${url##*/}"
 # Change name of snapshot for use on EOS starting
-RUN mv snapshot* snapshot-latest.bin
+RUN mv snapshot* /eos/snapshots/snapshot-latest.bin
 
 
 # Entrypoint
