@@ -20,8 +20,6 @@ ENV PACKAGES="\
 # To prevent - Warning: apt-key output should not be parsed (stdout is not a terminal)
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
-ENV REPO=" 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable' "
-
 
 # Install required packages to add APT certifcate and APT REPOs
 RUN apt update
@@ -56,6 +54,7 @@ RUN chmod 0644 /etc/cron.d/cron-snapshot
 
 # Get latest snapshot
 WORKDIR /eos/snapshots
+RUN echo $SNAPSHOT_NAME
 RUN wget --no-check-certificate -O- $SNAPSHOT_NAME
 # From the snapshot URL get the filename and extract
 RUN url=$SNAPSHOT_NAME; tar xzvf "${url##*/}"
