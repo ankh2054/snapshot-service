@@ -5,8 +5,8 @@
 snapshot-docker sets up a container running EOSIO on the chain of your choosing.
 
 
-To buld the docker modx image:
-docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.service
+To build the docker image:
+`docker build https://github.com/ankh2054/snapshot-service.git -t snapshot.service`
 
 ## ENV Variables
 
@@ -44,8 +44,5 @@ docker build https://github.com/ankh2054/flask-docker-nginx.git -t snapshot.serv
 	
 
 ## ToDo
-
- - Automate WAX_BINARY_DIR by looknig at APT logs as to where nodeos was installed
- WAXDIR=$(dpkg-query -L wax-mv-206wax02 | grep nodeos | dpkg-query -L wax-mv-206wax02 | grep nodeos | cut -d "/" -f 1-5)
 
  - Automate APT sources to be installed

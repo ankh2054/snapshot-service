@@ -11,9 +11,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV PACKAGES="\
   python3-pip \
   python3 \
-  software-properties-common\
   supervisor \
-  wget \
   nano \
   cron \
   python3-setuptools \
