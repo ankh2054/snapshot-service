@@ -1,15 +1,16 @@
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
-# SNAPSHOT-DOCKER
+# Automated Snapshot Service for WAX
 
-This docker container:
-- Sets up a running EOSIO process on the chain of your choosing.
-- Install Python that takes a snapshot and pushes it to Amazon S3 or Wasabi
-- Autorestarts on failures using the last snapshot taken.
-- Prunes Snapshots on S3/Wasabi to only last 3 days worth.
+**This docker container:**
+
+1. Sets up a running EOSIO process on the chain of your choosing.
+2. Install Python that takes hourly snapshots and pushes them Amazon S3 or Wasabi.
+3. Autorestarts on failures using the last snapshot taken.
+4. Prunes Snapshots on S3/Wasabi to only keep last 3 days.
 
 
-## ENV Variables - These will make sense once you get into the Installation Part of the process.
+**ENV Variables - These will make sense once you get into the Installation Part of the process.**
 
 |ENV & ARG                 |Value                          |Description                                   |
 |--------------------------|---------------------------------------|--------------------------------------|
@@ -23,16 +24,24 @@ This docker container:
 
 
 
-# Installation
+## Installation
 
-## Requirements
+### Requirements
 
 - Docker 
-- Brain 
+- Amazon S3 account or Wasabi
 - Coffee
 
+### Step 1 - Setup your Amazon S3 or Wasabi account.
 
-## Step 1 - Build the docker container from github.
+
+1. Setup a Amnazon S3 or Wasabi account
+	* https://wasabi.com
+	* https://aws.amazon.com/s3/
+2. Create a bucket. (Remember the name)
+3. Create your API keys. Make sure they have permissions to read and write to the bucket.
+
+### Step 2 - Build the docker container from github.
 
 The first step is to buld the docker container from github 
 
@@ -40,6 +49,8 @@ The first step is to buld the docker container from github
 
 - SNAPSHOT_NAME - The name of a snapshot to download that nodeos uses upon starting. This ensures your node syncs up to the network really fast.
 - WAX_BINARY - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
+
+**To build it:**
      
 	 docker build  https://github.com/ankh2054/snapshot-service.git  \
 	 -t snapshot.service \
@@ -47,8 +58,19 @@ The first step is to buld the docker container from github
 	 --build-arg WAX_BINARY=wax-mv-206wax02 
 
 
-**To Build it:**
 
+### Step 3 - Rung the docker container..
+
+The final step is to start the container. 
+
+**The following ENV variables need to be passed:**
+
+- CHAIN_NAME - The name of the chain to take snapshots for. :exclamation: Please note that onlky WAX is currently supported.
+- WAX_BINARY - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
+- ENDPOINT_URL - The Wasabi/S3 endpoint URL for your buckets These can be found within your S3/Wasabni control panels.
+- AWS_ACCESS_KEY_ID - Your Wasabi/S3 API access key 
+- AWS_SECRET_ACCESS_KEY - Your Wasabi/S3 API secret key 
+- WASABI_BUCKET - The name of your bucket where to files will be uploaded to.
 
 **To run it:**
 
@@ -61,9 +83,25 @@ The first step is to buld the docker container from github
 	 -e 'WASABI_BUCKET=waxtest2' \
 	 snapshot.service:latest
 
+### That is it - the service will now take hourly snapshots for you.
 
-	
+In the next coming weeks we will be creating a frontend for the service to display the available snapshots.
+
+### Troubleshooting 
+
+* You can check the service is running without any errors. 
+		docker logs snapshot.service.wax
+
+* Get the IP address of your container.
+		docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax
+
+* Check nodeos is running on your container. Note that this takes 2-3 minutes to sync up once you start the container.
+		curl http://ipaddress:8888/v1/chain/get_info
+
+
 
 ## ToDo
 
  - Automate APT sources to be installed
+ - Setup ENV for python pruning setting in days.
+ - Create Automnated frontend.
