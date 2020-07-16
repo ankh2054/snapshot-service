@@ -89,14 +89,14 @@ In the next coming weeks we will be creating a frontend for the service to displ
 
 ### Troubleshooting 
 
-* You can check the service is running without any errors. 
+* You can check the container is running without any errors. 
+
 ```docker logs snapshot.service.wax```
 
-* Get the IP address of your container.
-```docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax```
 
 * Check nodeos is running on your container. Note that this takes 2-3 minutes to sync up once you start the container.
-```curl http://ipaddress:8888/v1/chain/get_info```
+
+```curl http://$(sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax):8888/v1/chain/get_info```
 
 
 
