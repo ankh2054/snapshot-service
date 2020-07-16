@@ -6,7 +6,7 @@ DateTime==4.3
 docutils==0.15.2
 idna==2.10
 jmespath==0.10.0
-nltk==3.2.4
+nltk==3.4.5
 preprocessing==0.1.13
 python-dateutil==2.8.1
 pytz==2020.1
