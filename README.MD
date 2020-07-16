@@ -24,7 +24,7 @@
 
 
 
-# Installation Steps.
+# Installation Steps to get started
 
 ## Installation Requirements
 
@@ -47,7 +47,7 @@ The first step is to buld the docker container from github
 
 ### The following ENV variables need to be passed:
 
-- **SNAPSHOT_NAME** - The name of a snapshot to download that nodeos uses upon starting. This ensures your node syncs up to the network really fast.
+- **SNAPSHOT_NAME** - The URL link of a snapshot to download that nodeos uses upon starting. This ensures your node syncs up to the network really fast. :exclamation: Only tar.gz is currently supported.
 - **WAX_BINARY** - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
 
 **To build it:**
