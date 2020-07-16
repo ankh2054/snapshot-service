@@ -24,15 +24,15 @@
 
 
 
-## Installation
+# Installation Steps.
 
-### Requirements
+## Installation Requirements
 
 - Docker 
 - Amazon S3 account or Wasabi
 - Coffee
 
-### Step 1 - Setup your Amazon S3 or Wasabi account.
+## Step 1 - Setup your Amazon S3 or Wasabi account.
 
 
 1. Setup a Amnazon S3 or Wasabi account
@@ -41,14 +41,14 @@
 2. Create a bucket. (Remember the name)
 3. Create your API keys. Make sure they have permissions to read and write to the bucket.
 
-### Step 2 - Build the docker container from github.
+## Step 2 - Build the docker container from github.
 
 The first step is to buld the docker container from github 
 
-**The following ENV variables need to be passed:**
+### The following ENV variables need to be passed:
 
-- SNAPSHOT_NAME - The name of a snapshot to download that nodeos uses upon starting. This ensures your node syncs up to the network really fast.
-- WAX_BINARY - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
+- **SNAPSHOT_NAME** - The name of a snapshot to download that nodeos uses upon starting. This ensures your node syncs up to the network really fast.
+- **WAX_BINARY** - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
 
 **To build it:**
      
@@ -59,18 +59,18 @@ The first step is to buld the docker container from github
 
 
 
-### Step 3 - Rung the docker container..
+## Step 3 - Running the docker container.
 
 The final step is to start the container. 
 
-**The following ENV variables need to be passed:**
+### The following ENV variables need to be passed:
 
-- CHAIN_NAME - The name of the chain to take snapshots for. :exclamation: Please note that onlky WAX is currently supported.
-- WAX_BINARY - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
-- ENDPOINT_URL - The Wasabi/S3 endpoint URL for your buckets These can be found within your S3/Wasabni control panels.
-- AWS_ACCESS_KEY_ID - Your Wasabi/S3 API access key 
-- AWS_SECRET_ACCESS_KEY - Your Wasabi/S3 API secret key 
-- WASABI_BUCKET - The name of your bucket where to files will be uploaded to.
+- **CHAIN_NAME** - The name of the chain to take snapshots for. :exclamation: Please note that onlky WAX is currently supported.
+- **WAX_BINARY** - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
+- **ENDPOINT_URL** - The Wasabi/S3 endpoint URL for your buckets These can be found within your S3/Wasabni control panels.
+- **AWS_ACCESS_KEY_ID** - Your Wasabi/S3 API access key 
+- **AWS_SECRET_ACCESS_KEY** - Your Wasabi/S3 API secret key 
+- **WASABI_BUCKET** - The name of your bucket where to files will be uploaded to.
 
 **To run it:**
 
@@ -90,18 +90,18 @@ In the next coming weeks we will be creating a frontend for the service to displ
 ### Troubleshooting 
 
 * You can check the service is running without any errors. 
-		docker logs snapshot.service.wax
+```docker logs snapshot.service.wax```
 
 * Get the IP address of your container.
-		docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax
+```docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax```
 
 * Check nodeos is running on your container. Note that this takes 2-3 minutes to sync up once you start the container.
-		curl http://ipaddress:8888/v1/chain/get_info
+```curl http://ipaddress:8888/v1/chain/get_info```
 
 
 
 ## ToDo
 
- - Automate APT sources to be installed
- - Setup ENV for python pruning setting in days.
- - Create Automnated frontend.
+1. Automate APT sources to be installed
+2. Setup ENV for python pruning setting in days.
+3. Create Automnated frontend.
