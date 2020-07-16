@@ -2,13 +2,14 @@
 
 # SNAPSHOT-DOCKER
 
-snapshot-docker sets up a container running EOSIO on the chain of your choosing.
+This docker container:
+- Sets up a running EOSIO process on the chain of your choosing.
+- Install Python that takes a snapshot and pushes it to Amazon S3 or Wasabi
+- Autorestarts on failures using the last snapshot taken.
+- Prunes Snapshots on S3/Wasabi to only last 3 days worth.
 
 
-To build the docker image:
-`docker build https://github.com/ankh2054/snapshot-service.git -t snapshot.service`
-
-## ENV Variables
+## ENV Variables - These will make sense once you get into the Installation Part of the process.
 
 |ENV & ARG                 |Value                          |Description                                   |
 |--------------------------|---------------------------------------|--------------------------------------|
@@ -22,12 +23,32 @@ To build the docker image:
 
 
 
-**To Build it:**
+# Installation
+
+## Requirements
+
+- Docker 
+- Brain 
+- Coffee
+
+
+## Step 1 - Build the docker container from github.
+
+The first step is to buld the docker container from github 
+
+**The following ENV variables need to be passed:**
+
+- SNAPSHOT_NAME - The name of a snapshot to download that nodeos uses upon starting. This ensures your node syncs up to the network really fast.
+- WAX_BINARY - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
      
 	 docker build  https://github.com/ankh2054/snapshot-service.git  \
 	 -t snapshot.service \
 	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/snapshot-65345117.bin.tar.gz \
 	 --build-arg WAX_BINARY=wax-mv-206wax02 
+
+
+**To Build it:**
+
 
 **To run it:**
 
