@@ -100,7 +100,7 @@ In the next coming weeks we will be creating a frontend for the service to displ
 
 ```curl http://$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax):8888/v1/chain/get_info```
 
-
+* Technically there is no need to expose port 8888, but it's there incase you want to monitor this node with your monitoring system. If you dont run intend on monitoring the service remove the `--expose` option during the container run. 
 
 ## ToDo
 
