@@ -1,9 +1,13 @@
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+
+# Sentnl.io  
 ![SVG logo](https://www.sentnl.io/sentnl.svg)
 
 
 
-![Image Sentnl](https://www.sentnl.io/sentnl_256.png)
+
+
+
 
 # Automated Snapshot Service for WAX
 
