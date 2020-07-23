@@ -5,11 +5,6 @@ LABEL maintainer="charles@sentnl.io"
 LABEL version="1.0"
 LABEL description="EOSIO MULTICHAIN SNAPSHOT SERVICE."
 
-# Setup non root user
-RUN groupadd --gid 5000 snapshot \
-    && useradd --home-dir /home/snapshotr --create-home --uid 5000 \
-    --gid 5000 --shell /bin/sh --skel /dev/null snapshot
-
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -43,7 +38,6 @@ RUN apt update && apt install --no-install-recommends -y $PACKAGES $WAX_BINARY &
 
 # Setup Directories
 # Change to snapshot user
-USER snapshot
 RUN mkdir -p /eos/snapshots
 
 # Add files
@@ -65,7 +59,8 @@ RUN filename=$SNAPSHOT_NAME; tar xzvf "${filename##*/}"
 # Change name of snapshot for use on EOS starting
 RUN mv snapshot*.bin snapshot-latest.bin
 # Remove original snapshot download
-RUN rm snapshot*.tar.gz
+RUN rm snapshot*.tar.gz 
+
 
 # Entrypoint
 ADD files/start.sh /

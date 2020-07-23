@@ -69,7 +69,7 @@ plugin = eosio::producer_api_plugin
 EOF
 
 # Download the P2P report and add to config.ini
-echo "Downloading P2P lsit and adding to config.ini"
+echo "Downloading P2P list and adding to config.ini"
 
 wget https://validate.eosnation.io/${CHAIN_NAME}/reports/config.txt
 cat config.txt >> config.ini
