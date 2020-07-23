@@ -8,3 +8,4 @@ bin
 __pycache__
 bp.json
 schema.json
+delete_older.py

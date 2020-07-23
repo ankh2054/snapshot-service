@@ -53,6 +53,6 @@ subprocess.call([ 'mv', SNAPSHOT_FILENAME, '/eos/snapshots/snapshot-latest.bin']
 # delete snapshot 
 subprocess.call([ 'rm', FILENAME ])
 
-# Delete files older than 3 days in bu ket specified
-wasabi.delete_files("waxtest2")
+# Delete files older than 2 days in bucket specified
+wasabi.delete_files()
 

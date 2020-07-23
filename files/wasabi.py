@@ -94,7 +94,8 @@ def check_expiration(key_date=tday, limit=expire_limit):
 
 
 
-def delete_files(bucket):
+def delete_files():
+    bucket = wasabi_bucket
     s3_file = get_key_info(bucket)
     # i is the counter 
     for i, fs in enumerate(s3_file["timestamp"]):

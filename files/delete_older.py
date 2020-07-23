@@ -21,7 +21,7 @@ aws_secret_access_key = aws_secret_key)
 
 # todays\'s epoch
 tday = time.time()
-duration = 86400*3 #3 days in epoch seconds
+duration = 86400*2 #3 days in epoch seconds
 #checkpoint for deletion
 expire_limit = tday - duration
 # initialize s3 client
