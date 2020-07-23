@@ -54,7 +54,7 @@ The first step is to buld the docker container from github
      
 	 docker build  https://github.com/ankh2054/snapshot-service.git  \
 	 -t snapshot.service \
-	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/snapshot-65345117.bin.tar.gz \
+	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/snapshot-68153023.bin.tar.gz \
 	 --build-arg WAX_BINARY=wax-mv-206wax02 
 
 
@@ -107,4 +107,4 @@ In the next coming weeks we will be creating a frontend for the service to displ
 1. Automate APT sources to be installed
 2. Setup ENV for python pruning setting in days.
 3. Create Automnated frontend.
-4. Change container to run as specific user
+4. Change container to run as specific user called snapshot and not root
