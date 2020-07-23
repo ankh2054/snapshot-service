@@ -65,7 +65,7 @@ The final step is to start the container.
 
 ### The following ENV variables need to be passed:
 
-- **CHAIN_NAME** - The name of the chain to take snapshots for. :exclamation: Please note that onlky WAX is currently supported.
+- **CHAIN_NAME** - The name of the chain to take snapshots for. :exclamation: Please note that only WAX is currently supported.
 - **WAX_BINARY** - Specifies the Nodeos APT package you want to install (See here for more details - https://eosswedenorg.github.io/apt/wax/bionic) :heart: to EOSsweden for the APT service. 
 - **ENDPOINT_URL** - The Wasabi/S3 endpoint URL for your buckets These can be found within your S3/Wasabni control panels.
 - **AWS_ACCESS_KEY_ID** - Your Wasabi/S3 API access key 
@@ -74,14 +74,16 @@ The final step is to start the container.
 
 **To run it:**
 
-     docker run  --name snapshot.service.wax  -d  --expose 8888 \
-	 -e 'CHAIN_NAME=wax' \
-	 -e 'WAX_BINARY=wax-mv-206wax02' \
-	 -e 'ENDPOINT_URL=https://s3.eu-central-1.wasabisys.com' \
-	 -e 'AWS_ACCESS_KEY_ID=xxxxxxxxxxx' \
-	 -e 'AWS_SECRET_ACCESS_KEY=xxxxxxxxxxx' \
-	 -e 'WASABI_BUCKET=waxtest2' \
-	 snapshot.service:latest
+```Dockerfile
+docker run  --name snapshot.service.wax  -d  --expose 8888 \
+-e 'CHAIN_NAME=wax' \
+-e 'WAX_BINARY=wax-mv-206wax02' \
+-e 'ENDPOINT_URL=https://s3.eu-central-1.wasabisys.com' \
+-e 'AWS_ACCESS_KEY_ID=xxxxxxxxxxx' \
+-e 'AWS_SECRET_ACCESS_KEY=xxxxxxxxxxx' \
+-e 'WASABI_BUCKET=waxtest2' \
+snapshot.service:latest
+```
 
 ### That is it - the service will now take hourly snapshots for you.
 
@@ -96,7 +98,7 @@ In the next coming weeks we will be creating a frontend for the service to displ
 
 * Check nodeos is running on your container. Note that this takes 2-3 minutes to sync up once you start the container.
 
-```curl http://$(sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax):8888/v1/chain/get_info```
+```curl http://$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snapshot.service.wax):8888/v1/chain/get_info```
 
 
 
@@ -105,3 +107,4 @@ In the next coming weeks we will be creating a frontend for the service to displ
 1. Automate APT sources to be installed
 2. Setup ENV for python pruning setting in days.
 3. Create Automnated frontend.
+4. Change container to run as specific user

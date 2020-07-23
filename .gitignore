@@ -6,3 +6,5 @@ include
 bin
 .Python
 __pycache__
+bp.json
+schema.json

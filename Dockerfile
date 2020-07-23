@@ -5,6 +5,11 @@ LABEL maintainer="charles@sentnl.io"
 LABEL version="1.0"
 LABEL description="EOSIO MULTICHAIN SNAPSHOT SERVICE."
 
+# Setup non root user
+RUN groupadd --gid 5000 snapshot \
+    && useradd --home-dir /home/snapshotr --create-home --uid 5000 \
+    --gid 5000 --shell /bin/sh --skel /dev/null snapshot
+
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -37,6 +42,8 @@ RUN apt update && apt install --no-install-recommends -y $PACKAGES $WAX_BINARY &
     apt clean
 
 # Setup Directories
+# Change to snapshot user
+USER snapshot
 RUN mkdir -p /eos/snapshots
 
 # Add files
@@ -45,7 +52,7 @@ ADD files/wasabi.py /eos/wasabi.py
 ADD files/requirements.txt /eos/requirements.txt
 ADD files/cron-snapshot /etc/cron.d
 
-# Permissions and add cron to root crontab
+# Permissions and add cron to snapshot crontab
 RUN chmod 0644 /etc/cron.d/cron-snapshot && crontab /etc/cron.d/cron-snapshot
 
 # Get latest snapshot
