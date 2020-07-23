@@ -1,5 +1,6 @@
-![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
-    ![SVG logo](https://www.sentnl.io/sentnl.svg)
+
+![SVG logo](https://www.sentnl.io/sentnl.svg)
+          ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 # Sentnl.io  
 
