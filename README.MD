@@ -20,6 +20,7 @@
 3. Autorestarts on failures using the last snapshot taken.
 4. Prunes Snapshots on S3/Wasabi to only keep last 3 days.
 
+:pound: NOTE that Wasabi only costs £5 pcm for 1TB :pound:
 
 **ENV Variables - These will make sense once you get into the Installation Part of the process.**
 
@@ -117,5 +118,5 @@ In the next coming weeks we will be creating a frontend for the service to displ
 
 1. Automate APT sources to be installed
 2. Setup ENV for python pruning setting in days.
-3. Create Automnated frontend.
+3. Create Automated frontend pulling SVG logos from wax.json
 4. Change container to run as specific user called snapshot and not root
