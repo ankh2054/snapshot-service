@@ -24,6 +24,8 @@ aws_secret_access_key = aws_secret_key)
 # if uploading tar.gz set type to application/gzip
 #Upload a file and make it publicly available
 
+
+## Multiple chains - add additional argument, bucketname, version (to be applied as metadata)
 def wasabiuploadfile(localfile,remotefile):
     s4.upload_file(
         localfile, wasabi_bucket, remotefile,
@@ -31,8 +33,8 @@ def wasabiuploadfile(localfile,remotefile):
             'ACL': 'public-read', 
             'Metadata': 
             {
-                'chain': 'waxtestnet',
-                'version': '2.0.6'
+                'chain': 'waxtestnet', #Add bucketname as this should also be chain name
+                'version': '2.0.6'   # Take version from **WAX_BINARY** ENV if else 
             
             },
             'ContentType': 'application/gzip'
