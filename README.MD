@@ -33,6 +33,9 @@
 |**AWS_ACCESS_KEY_ID**     |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 access key        		  |
 |**AWS_SECRET_ACCESS_KEY** |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 secret key 				  |
 |**WASABI_BUCKET**         |`waxtest2`                     `       | Wasabi/S3 bucketname for snapshots   |
+|**OBJECT_RETENTION**      |`2`                     `              | Days to keep uploaded snapshots      |
+|**CRON_SCHEDULE**         |`0 * * * *`                     `      | Set a cron schedule expression       |
+
 
 
 
@@ -83,6 +86,8 @@ The final step is to start the container.
 - **AWS_ACCESS_KEY_ID** - Your Wasabi/S3 API access key 
 - **AWS_SECRET_ACCESS_KEY** - Your Wasabi/S3 API secret key 
 - **WASABI_BUCKET** - The name of your bucket where to files will be uploaded to.
+- **OBJECT_RETENTION** - The amount of days to keep remotely uploaded snapshots on Wasabi/S3. 
+- **CRON_SCHEDULE** - Set your own Cron schedule based on cron schedule expressions- please refer to https://crontab.guru
 
 **To run it:**
 
@@ -94,6 +99,8 @@ docker run  --name snapshot.service.wax  -d  --expose 8888 \
 -e 'AWS_ACCESS_KEY_ID=xxxxxxxxxxx' \
 -e 'AWS_SECRET_ACCESS_KEY=xxxxxxxxxxx' \
 -e 'WASABI_BUCKET=waxtest2' \
+-e 'OBJECT_RETENTION=2' \
+-e 'CRON_SCHEDULE="0 * * * *"' \
 snapshot.service:latest
 ```
 
@@ -122,3 +129,5 @@ In the next coming weeks we will be creating a frontend for the service to displ
 4. Create Automated frontend pulling SVG logos from wax.json
 5. Change container to run as specific user called snapshot and not root.
 6. Allow to keep weekly snapshots ( add metadata to prevent deletion after 3 days)
+7. Allow ability to set retention period for remotely uploaded files.
+8. Allow to set time cron time

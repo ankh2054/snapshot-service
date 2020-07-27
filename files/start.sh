@@ -92,15 +92,21 @@ s3 = {
     "aws_access_key_id": "${AWS_ACCESS_KEY_ID}",
     "aws_secret_access_key": "${AWS_SECRET_ACCESS_KEY}",
     "wasabi_bucket": "${WASABI_BUCKET}"
+    "object_retention": "${OBJECT_RETENTION}"
 }
 EOF
 }
 
+# Set cron schedule for python
+cron_setup(){
+  (crontab -l ; echo "$CRON_SCHEDULE"" /usr/bin/python3 /eos/snapshot.py") | sort - | uniq - | crontab -
+}
 
 # Running all our scripts
 create_supervisor_conf
 create_config_ini
 python_snapshot_setup
+cron_setup
 
 # Start Supervisor 
 echo "Starting Supervisor"

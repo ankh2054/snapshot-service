@@ -4,10 +4,6 @@ import time
 
 # todays\'s epoch
 tday = time.time()
-duration = 86400*2 #3 days in epoch seconds
-#checkpoint for deletion
-expire_limit = tday - duration
-# initialize s3 client
 file_size = [] #just to keep track of the total savings in storage size
 
 
@@ -15,6 +11,10 @@ endpoint = cfg.s3["endpoint_url"]
 aws_access_key = cfg.s3["aws_access_key_id"]
 aws_secret_key = cfg.s3["aws_secret_access_key"]
 wasabi_bucket = cfg.s3["wasabi_bucket"]
+duration = 86400*int(cfg.s3["object_retention"])
+
+#checkpoint for deletion
+expire_limit = tday - duration
 
 s4 = boto3.client('s3',
 endpoint_url = endpoint,
