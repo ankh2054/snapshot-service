@@ -116,7 +116,9 @@ In the next coming weeks we will be creating a frontend for the service to displ
 
 ## ToDo
 
-1. Automate APT sources to be installed
-2. Setup ENV for python pruning setting in days.
-3. Create Automated frontend pulling SVG logos from wax.json
-4. Change container to run as specific user called snapshot and not root
+1. Allow for both a mainnet and testnet on single container.
+2. Automate APT sources to be installed.
+3. Setup ENV for python pruning setting in days.
+4. Create Automated frontend pulling SVG logos from wax.json
+5. Change container to run as specific user called snapshot and not root.
+6. Allow to keep weekly snapshots ( add metadata to prevent deletion after 3 days)
