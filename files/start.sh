@@ -99,7 +99,7 @@ EOF
 
 # Set cron schedule for python
 cron_setup(){
-  (crontab -l ; echo "$CRON_SCHEDULE"" /usr/bin/python3 /eos/snapshot.py") | sort - | uniq - | crontab -
+  (crontab -l ; echo ""$CRON_SCHEDULE"" /usr/bin/python3 /eos/snapshot.py") | sort - | uniq - | crontab -
 }
 
 # Running all our scripts
