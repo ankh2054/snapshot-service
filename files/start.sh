@@ -93,6 +93,9 @@ s3 = {
     "aws_secret_access_key": "${AWS_SECRET_ACCESS_KEY}",
     "wasabi_bucket": "${WASABI_BUCKET}"
 }
+core = {
+  "retention_days": "${RETENTION_DAYS}"
+}
 EOF
 }
 

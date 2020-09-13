@@ -32,7 +32,8 @@
 |**ENDPOINT_URL**          |`https://s3.eu-central-1.wasabisys.com`| Wasabi/S3 endpoint URL for downloads |
 |**AWS_ACCESS_KEY_ID**     |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 access key        		  |
 |**AWS_SECRET_ACCESS_KEY** |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 secret key 				  |
-|**WASABI_BUCKET**         |`waxtest2`                     `       | Wasabi/S3 bucketname for snapshots   |
+|**WASABI_BUCKET**         |`waxtest2`                             | Wasabi/S3 bucketname for snapshots   |
+|**RETENTION_DAYS**        |`2`                                    | Amount of days to keep snapshots     |
 
 
 
@@ -83,6 +84,7 @@ The final step is to start the container.
 - **AWS_ACCESS_KEY_ID** - Your Wasabi/S3 API access key 
 - **AWS_SECRET_ACCESS_KEY** - Your Wasabi/S3 API secret key 
 - **WASABI_BUCKET** - The name of your bucket where to files will be uploaded to.
+- **RETENTION_DAYS**  - The amount of days to keep snapshots on S3/Wasabi
 
 **To run it:**
 
@@ -94,6 +96,7 @@ docker run  --name snapshot.service.wax  -d  --expose 8888 \
 -e 'AWS_ACCESS_KEY_ID=xxxxxxxxxxx' \
 -e 'AWS_SECRET_ACCESS_KEY=xxxxxxxxxxx' \
 -e 'WASABI_BUCKET=waxtest2' \
+-e 'RETENTION_DAYS=2' \
 snapshot.service:latest
 ```
 

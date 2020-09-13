@@ -5,7 +5,6 @@ from datetime import datetime
 import subprocess
 import boto3
 
-
 import wasabiconfig as cfg
 
 
