@@ -58,6 +58,7 @@ chain-state-db-guard-size-mb = 256
 reversible-blocks-db-size-mb = 2048
 reversible-blocks-db-guard-size-mb = 16
 wasm-runtime = eos-vm-jit
+read-mode = irreversible
 max-clients = 50
 p2p-max-nodes-per-host = 10
 sync-fetch-span = 500
