@@ -5,7 +5,7 @@ import time
 # todays\'s epoch
 tday = time.time()
 retention = cfg.core["retention_days"]
-duration = 86400*retention #2 days in epoch seconds
+duration = 86400*int(retention) #2 days in epoch seconds
 #checkpoint for deletion
 expire_limit = tday - duration
 # initialize s3 client
