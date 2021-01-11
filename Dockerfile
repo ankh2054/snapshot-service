@@ -8,6 +8,13 @@ LABEL description="EOSIO MULTICHAIN SNAPSHOT SERVICE."
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
+
+# Add EOS user
+RUN groupadd --gid 1001 eos \
+   && useradd --uid 1001 --gid 1001 --shell /bin/bash --create-home --home /home/eos eos
+
+
+## Start Runninng as ROOT ##
 ENV PACKAGES="\
   python3-pip \
   python3 \
@@ -37,17 +44,20 @@ RUN apt update && apt install --no-install-recommends -y $PACKAGES $WAX_BINARY &
     apt clean
 
 # Setup Directories
-# Change to snapshot user
-RUN mkdir -p /eos/snapshots
+RUN mkdir -p /eos/snapshots && \
+    mkdir -p /eos/supervisor/log && \
+    mkdir -p /eos/cron && \
+    chown eos:eos -R /eos/
 
-# Add files
-ADD files/snapshot.py /eos/snapshot.py
-ADD files/wasabi.py /eos/wasabi.py
-ADD files/requirements.txt /eos/requirements.txt
-ADD files/cron-snapshot /etc/cron.d
+#ADD files/cron-snapshot /etc/cron.d
 
 # Permissions and add cron to snapshot crontab
-RUN chmod 0644 /etc/cron.d/cron-snapshot && crontab /etc/cron.d/cron-snapshot
+#RUN chmod 0644 /etc/cron.d/cron-snapshot && crontab /etc/cron.d/cron-snapshot
+
+
+
+# Change to eos user
+USER eos
 
 # Get latest snapshot
 WORKDIR /eos/snapshots
@@ -62,8 +72,29 @@ RUN mv snapshot*.bin snapshot-latest.bin
 RUN rm snapshot*.tar.gz 
 
 
-# Entrypoint
-ADD files/start.sh /
-RUN chmod u+x /start.sh
-CMD /start.sh
+# Add files
+WORKDIR /eos
+ADD files/start.sh entry/.
+ADD files/snapshot.py .
+ADD files/wasabi.py .
+ADD files/requirements.txt .
+ADD files/cron-snapshot cron/.
+
+# Changing back to root to change permissions, normal user cannot.
+USER root
+WORKDIR /eos 
+RUN chown eos:eos snapshot.py && \
+    chown eos:eos wasabi.py && \
+    chown eos:eos requirements.txt && \
+    chmod u+x entry/start.sh && chown eos:eos entry/start.sh
+
+# Setup crontask for user EOS
+RUN chmod 0644 /eos/cron/cron-snapshot && \
+    chown eos:eos /eos/cron/cron-snapshot && \
+    crontab -u eos /eos/cron/cron-snapshot 
+
+
+# Change back to EOS user to start processes.
+USER eos
+CMD /eos/entry/start.sh
                                             

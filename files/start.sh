@@ -11,8 +11,8 @@ echo "Creating supervisor.conf"
 # Set WAX Binary DIR
 WAX_BINARY_DIR=$(dpkg-query -L ${WAX_BINARY} | grep nodeos | cut -d "/" -f 1-5)
 
-  rm -rf /etc/supervisord.conf
-  cat > /etc/supervisord.conf <<EOF
+  
+  cat > /eos/supervisor/supervisord.conf <<EOF
 [unix_http_server]
 file=/var/run/supervisor.sock   ; 
 chmod=0700                       ; 
@@ -108,4 +108,4 @@ python_snapshot_setup
 
 # Start Supervisor 
 echo "Starting Supervisor"
-/usr/bin/supervisord -n -c /etc/supervisord.conf
+/usr/bin/supervisord -u eos -n -c /eos/supervisor/supervisord.conf

@@ -67,7 +67,7 @@ The first step is to buld the docker container from github
      
 	 docker build  https://github.com/ankh2054/snapshot-service.git  \
 	 -t snapshot.service \
-	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/snapshot-68153023.bin.tar.gz \
+	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/snapshot-77175392.bin.tar.gz \
 	 --build-arg WAX_BINARY=wax-mv-206wax02 
 
 
@@ -121,7 +121,5 @@ In the next coming weeks we will be creating a frontend for the service to displ
 
 1. Allow for both a mainnet and testnet on single container.
 2. Automate APT sources to be installed.
-3. Setup ENV for python pruning setting in days.
-4. Create Automated frontend pulling SVG logos from wax.json
 5. Change container to run as specific user called snapshot and not root.
 6. Allow to keep weekly snapshots ( add metadata to prevent deletion after 3 days)
