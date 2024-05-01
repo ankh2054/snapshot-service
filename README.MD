@@ -28,7 +28,7 @@
 |--------------------------|---------------------------------------|--------------------------------------|
 |**CHAIN_NAME**            |`wax`                                  | Used in P2P download from eosnation  |
 |**SNAPSHOT_NAME**         |`http://x/snapshot.tar.gz`             | The initial snapshot to start with   |
-|**WAX_BINARY**            |`wax-mv-206wax02`                      | Which package to install from APT    |
+|**WAX_BINARY**            |`wax-leap-501wax01`                    | Which package to install from APT    |
 |**ENDPOINT_URL**          |`https://s3.eu-central-1.wasabisys.com`| Wasabi/S3 endpoint URL for downloads |
 |**AWS_ACCESS_KEY_ID**     |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 access key        		  |
 |**AWS_SECRET_ACCESS_KEY** |`XXXXXXXXXXXXXXXX`                     | Wasabi/S3 secret key 				  |
@@ -67,8 +67,8 @@ The first step is to buld the docker container from github
      
 	 docker build  https://github.com/ankh2054/snapshot-service.git  \
 	 -t snapshot.service \
-	 --build-arg SNAPSHOT_NAME=https://snapshots.waxsweden.org/snapshots/57abfa/2.0/snapshot-77175392.bin.tar.gz \
-	 --build-arg WAX_BINARY=wax-mv-206wax02 
+	 --build-arg SNAPSHOT_NAME=https://snapshots-cdn.eossweden.org/wax/5.x/latest \
+	 --build-arg WAX_BINARY=wax-leap-501wax01
 
 
 
@@ -91,7 +91,7 @@ The final step is to start the container.
 ```Dockerfile
 docker run  --name snapshot.service.wax  -d  --expose 8888 \
 -e 'CHAIN_NAME=wax' \
--e 'WAX_BINARY=wax-mv-206wax02' \
+-e 'WAX_BINARY=wax-leap-501wax01' \
 -e 'ENDPOINT_URL=https://s3.eu-central-1.wasabisys.com' \
 -e 'AWS_ACCESS_KEY_ID=xxxxxxxxxxx' \
 -e 'AWS_SECRET_ACCESS_KEY=xxxxxxxxxxx' \
