@@ -1,5 +1,5 @@
-#Download base image ubuntu 20.04
-FROM ubuntu:18.04
+#Download base image ubuntu 22.04
+FROM ubuntu:22.04
 
 LABEL maintainer="charles@sentnl.io"
 LABEL version="1.0"
@@ -32,8 +32,8 @@ RUN apt update && apt install --no-install-recommends -y wget gnupg2 ca-certific
 ## EOSswededn Package repostiory setup 
 # Add GPG key
 RUN wget --no-check-certificate -O- https://apt.eossweden.org/key 2> /dev/null | apt-key add -   
-RUN apt-add-repository -y 'deb [arch=amd64] https://apt.eossweden.org/wax bionic stable'    
-RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax bionic testing' 
+RUN apt-add-repository -y 'deb [arch=amd64] https://apt.eossweden.org/wax jammy stable'    
+RUN apt-add-repository -y 'deb [arch=amd64] https://apt.waxsweden.org/wax jammy testing' 
 
 
 # Pull in build argument
